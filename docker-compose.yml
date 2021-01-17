@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nuxt-deploy:
+    # Dockerfileの場所
+    build: 
+        context: ./
+        dockerfile: ./Dockerfile
+    tty: true
+    container_name: nuxt-deploy
+    working_dir: /nuxt-deploy/project
+    volumes:
+      - ./project:/nuxt-deploy/project
+    # コンテナ内部の3000を外部から5000でアクセスする
+    ports:
+      - 5000:3000
+    environment:
+      - HOST=0.0.0.0
